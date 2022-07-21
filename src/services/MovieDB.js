@@ -1,44 +1,72 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom/client';
 
 export default class MovieDB extends Component
 {
-    // img = "https://image.tmdb.org/t/p/w500"
-    getResponseMovieDB ()
+    url = "https://api.themoviedb.org/3/search/movie?api_key=c8e44c65deebb0118bbf6902d87d51e0&language=en-US&query=return&page=20&include_adult=false"
+    async getResponseMovieDB ()
     {
-        fetch('https://api.themoviedb.org/3/search/movie?api_key=c8e44c65deebb0118bbf6902d87d51e0&language=en-US&query=return&page=20&include_adult=false')
-            .then(function (data)
-            {
-                if (data.status >= 400 && data.status < 600)
-                {
-                    throw new Error("Bad response from server");
-                }
-                return Promise.resolve(data)
-            }).then(function (data)
-            {
-                return data.json()
-            }).then(function (dataInfo)
-            {
-                return dataInfo.results.map((el) =>
-                {
-                    console.log(el.poster_path)
-                })
-            }).catch((err) =>
-            {
-                console.log("Could not fetch", err)
-            })
+        const res = await fetch(`${this.url}`)
 
+        if (!res.ok)
+        {
+            throw new Error(`Could not fetch ${this.url}` + `, received${res.status}`)
+        }
+
+        const body = await res.json()
+        return body
     }
-    getResponseMovieDBImg ()
+
+
+    async getResponseMovieDBAll ()
     {
-
+        // const data = this.getResponseMovieDB().then((el) =>
+        // {
+        //     return el.map((img) =>
+        //     {
+        //         return img.poster_path
+        //     })
+        // })
+        // return data
+        const data = await this.getResponseMovieDB()
+        return data.results
     }
-    getResponseMovieDBText ()
-    {
-
-    }
-    getResponseMovieDBHeader ()
-    {
-
-    }
+    // getResponseMovieDBText ()
+    // {
+    //     return this.getResponseMovieDB().then((el) =>
+    //     {
+    //         return el.map((text) =>
+    //         {
+    //             return text.overview
+    //         })
+    //     })
+    // }
+    // getResponseMovieDBHeader ()
+    // {
+    //     return this.getResponseMovieDB().then((el) =>
+    //     {
+    //         return el.map((header) =>
+    //         {
+    //             return header.title
+    //         })
+    //     })
+    // }
+    // getResponseMovieDBPopularity ()
+    // {
+    //     return this.getResponseMovieDB().then((el) =>
+    //     {
+    //         return el.map((reiting) =>
+    //         {
+    //             return reiting.popularity
+    //         })
+    //     })
+    // }
 }
+
+const movie = new MovieDB()
+movie.getResponseMovieDBAll().then((img) =>
+{
+    img.forEach((el) =>
+    {
+        console.log(el.poster_path)
+    })
+})
