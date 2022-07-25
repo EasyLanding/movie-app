@@ -19,47 +19,9 @@ export default class MovieDB extends Component
 
     async getResponseMovieDBAll ()
     {
-        // const data = this.getResponseMovieDB().then((el) =>
-        // {
-        //     return el.map((img) =>
-        //     {
-        //         return img.poster_path
-        //     })
-        // })
-        // return data
         const data = await this.getResponseMovieDB()
         return data.results
     }
-    // getResponseMovieDBText ()
-    // {
-    //     return this.getResponseMovieDB().then((el) =>
-    //     {
-    //         return el.map((text) =>
-    //         {
-    //             return text.overview
-    //         })
-    //     })
-    // }
-    // getResponseMovieDBHeader ()
-    // {
-    //     return this.getResponseMovieDB().then((el) =>
-    //     {
-    //         return el.map((header) =>
-    //         {
-    //             return header.title
-    //         })
-    //     })
-    // }
-    // getResponseMovieDBPopularity ()
-    // {
-    //     return this.getResponseMovieDB().then((el) =>
-    //     {
-    //         return el.map((reiting) =>
-    //         {
-    //             return reiting.popularity
-    //         })
-    //     })
-    // }
 }
 
 const movie = new MovieDB()
@@ -67,6 +29,6 @@ movie.getResponseMovieDBAll().then((img) =>
 {
     img.forEach((el) =>
     {
-        console.log(el.poster_path)
+        console.log(el)
     })
 })

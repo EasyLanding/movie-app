@@ -1,40 +1,45 @@
 import React, { Component } from 'react';
 import MovieDb from '../../services/MovieDB';
+import './MovieContent.css'
 
 
 export default class MovieContent extends Component
 {
     state = {
-        img: null,
-        popularity: null,
-        text: null,
-        title: null
+        movieElement: []
     }
     movieDB = new MovieDb()
-
-    movieTitle = () =>
+    componentDidMount ()
     {
-        this.movieDB.getResponseMovieDBAll().then((el) =>
-        {
-            return el.forEach((element) =>
+        let elTitle = this.movieDB.getResponseMovieDBAll()
+            .then((element) =>
             {
-                let title = document.title.innerHTML(`<h2>${element.title}</h2>`)
-                return title
+                this.setState({
+                    movieElement: element.map(element =>
+                    {
+                        return [element.title, element.overview, element.poster_path, element.vote_average]
+                    }),
+                })
             })
-        })
     }
+
 
     render ()
     {
-        const { img, popularity, text, title } = this.state
-        const { movieTitle } = this.props
+        const { movieElement } = this.state
         return (
             <div>
-                <h1>Movie DB</h1>
-                <div className="row mb2">
-                    <div className="col-md-6">
-                        { movieTitle }
-                    </div>
+                <h1 className='movieCartHeader'>Movie DB</h1>
+                <div className="movieCart">
+                    { movieElement.map(function (itemTitle)
+                    {
+                        return <div>
+                            <h2 className='movieHeader'>{ itemTitle[0] }</h2>
+                            <img className='movieImg' src={ `https://image.tmdb.org/t/p/original${itemTitle[2]}` } />
+                            <p className='movieAverage'>{ itemTitle[3] } &#9733;</p>
+                            <p className='movieDescription'>{ itemTitle[1] }</p>
+                        </div>
+                    }) }
                 </div>
             </div >
         );

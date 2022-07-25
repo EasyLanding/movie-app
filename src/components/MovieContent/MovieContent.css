@@ -1,0 +1,23 @@
+.movieCartHeader {
+    margin: auto;
+    width: 300px;
+}
+
+.movieCart {
+    display: block;
+    margin: auto;
+    width: 500px;
+}
+
+.movieImg {
+    width: 200px;
+    height: 300px;
+}
+
+.movieDescription {
+    width: 400px;
+}
+
+.movieAverage {
+    font-size: 22px;
+}
