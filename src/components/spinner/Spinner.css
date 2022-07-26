@@ -1,7 +1,8 @@
 .example {
-    margin: 20px 0;
+    margin: auto;
+    width: 200px;
+    height: 200px;
     margin-bottom: 20px;
     padding: 30px 50px;
-    text-align: center;
     border-radius: 4px;
 }

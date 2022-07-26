@@ -1,5 +1,6 @@
 import React from 'react';
-
+import { Alert } from 'antd';
+import 'antd/dist/antd.css';
 import './error-indicator.css';
 import icon from './death-star.png';
 
@@ -8,13 +9,7 @@ const ErrorIndicator = () =>
     return (
         <div className="error-indicator">
             <img src={ icon } alt="error icon" />
-            <span className="boom">BOOM!</span>
-            <span>
-                something has gone terribly wrong
-            </span>
-            <span>
-                (but we already sent droids to fix it)
-            </span>
+            <Alert className="error-indicator-text" message="Упс... Похоже на какие-то не поладки, проверьте подключение интернет" type="error" />
         </div>
     );
 };

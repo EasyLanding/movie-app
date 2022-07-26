@@ -55,19 +55,24 @@ export default class MovieContent extends Component
                 {
                     <div>
                         <h1 className='movieCartHeader'>Movie DB</h1>
-                        <div className="movieCart">
-                            {
-                                movieElement.map(function (itemTitle)
-                                {
-                                    return <div key={ itemTitle[4] }>
-                                        <h2 className='movieHeader'>{ itemTitle[0] }</h2>
-                                        <img className='movieImg' src={ `https://image.tmdb.org/t/p/original${itemTitle[2]}` } />
-                                        <p className='movieAverage'>{ itemTitle[3] } &#9733;</p>
-                                        <p className='movieDescription'>{ itemTitle[1] }</p>
-                                    </div>
-                                })
-                            }
-                        </div>
+
+                        {
+                            !(loading || error) ?
+                                <div className="movieCart">
+                                    {
+                                        movieElement.map(function (itemTitle)
+                                        {
+                                            return <div key={ itemTitle[4] }>
+                                                <h2 className='movieHeader'>{ itemTitle[0] }</h2>
+                                                <img className='movieImg' src={ `https://image.tmdb.org/t/p/original${itemTitle[2]}` } />
+                                                <p className='movieAverage'>{ itemTitle[3] } &#9733;</p>
+                                                <p className='movieDescription'>{ itemTitle[1] }</p>
+                                            </div>
+                                        })
+                                    }
+                                </div>
+                                : null
+                        }
                     </div>
                 }
             </div>
