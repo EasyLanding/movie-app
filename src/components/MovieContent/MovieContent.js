@@ -5,8 +5,9 @@ import ErrorIndicator from '../error-indicator/error-indicator';
 import Spinner from '../spinner/Spinner';
 import { Pagination } from "antd";
 import "antd/dist/antd.css";
+import SearchInput from '../searchInput/SearchInput';
 
-const pageSize = 6;
+const pageSize = 2;
 
 export default class MovieContent extends Component
 {
@@ -16,7 +17,8 @@ export default class MovieContent extends Component
         totalPage: 0,
         current: 1,
         minIndex: 0,
-        maxIndex: 0
+        maxIndex: 0,
+        term: 'Foretop'
     }
     movieDB = new MovieDb()
     componentDidMount ()
@@ -34,6 +36,7 @@ export default class MovieContent extends Component
                     maxIndex: pageSize
                 })
             }).then(this.onMovieDbLoaded).catch(this.onError)
+
     }
 
     onMovieDbLoaded = () =>
@@ -61,21 +64,52 @@ export default class MovieContent extends Component
         });
     };
 
+    onSearchChange = (term) =>
+    {
+        this.setState({ term })
+    }
+
+    search (items, term)
+    {
+        if (term.length === 0)
+        {
+            return items;
+        }
+
+        return items.map((items) =>
+        {
+            return items.filter((item) =>
+            {
+                // if (typeof item === 'string')
+                // {
+                // console.log(item)
+                // return item.indexOf(term.toLowerCase()) > -1;
+                //}
+            });
+        })
+    }
+
     render ()
     {
-        const { movieElement, loading, error, current, minIndex, maxIndex } = this.state
+        const { movieElement, loading, error, current, minIndex, maxIndex, term } = this.state
+
+        const visibleItems = this.search(movieElement, term)
+        console.log(visibleItems)
 
         const errorMessage = error ? < ErrorIndicator /> : null;
         const spinner = loading ? <Spinner /> : null;
 
         return (
-            <div>
+            <div className='conteinerDiv'>
                 { errorMessage }
                 { spinner }
+                <SearchInput
+                    onSearchChange={ this.onSearchChange } />
+                <div className="movieCartConteinerHeader">
+                    <h1 className='movieCartHeader'>Movie DB</h1>
+                </div>
                 {
-                    <div>
-                        <h1 className='movieCartHeader'>Movie DB</h1>
-
+                    <div className='movieCartConteiner'>
                         {
                             !(loading || error) ?
                                 <div className="movieCart">
@@ -83,11 +117,13 @@ export default class MovieContent extends Component
                                         movieElement.map(function (itemTitle, index)
                                         {
                                             return index >= minIndex &&
-                                                index < maxIndex && (<div key={ itemTitle[4] }>
-                                                    <h2 className='movieHeader'>{ itemTitle[0] }</h2>
-                                                    <img className='movieImg' src={ `https://image.tmdb.org/t/p/original${itemTitle[2]}` } />
-                                                    <p className='movieAverage'>{ itemTitle[3] } &#9733;</p>
-                                                    <p className='movieDescription'>{ itemTitle[1] }</p>
+                                                index < maxIndex && (<div key={ itemTitle[4] } className="movieCart-cart">
+                                                    <img className='movieImg' alt={ itemTitle[4] } src={ `https://image.tmdb.org/t/p/original${itemTitle[2]}` } />
+                                                    <div className='movieCart-cart-content'>
+                                                        <h2 className='movieHeader'>{ itemTitle[0] }</h2>
+                                                        <p className='movieAverage'>{ itemTitle[3] } &#9733;</p>
+                                                        <p className='movieDescription'>{ itemTitle[1] }</p>
+                                                    </div>
                                                 </div>)
                                         })
                                     }
@@ -96,13 +132,15 @@ export default class MovieContent extends Component
                         }
                     </div>
                 }
-                <Pagination
-                    pageSize={ pageSize }
-                    current={ current }
-                    total={ movieElement.length }
-                    onChange={ this.handleChange }
-                    style={ { bottom: "0px" } }
-                />
+                <div className='paginationConteiner'>
+                    <Pagination
+                        pageSize={ pageSize }
+                        current={ current }
+                        total={ movieElement.length }
+                        onChange={ this.handleChange }
+                        style={ { bottom: "0px" } }
+                    />
+                </div>
             </div>
         );
     }

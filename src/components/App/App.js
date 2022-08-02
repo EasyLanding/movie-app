@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom/client';
 import MovieContent from '../MovieContent/MovieContent';
-import SearchInput from '../searchInput/SearchInput';
 
-const App = () =>
+export default class App extends Component
 {
-    return (
-        <div>
-            <SearchInput />
-            < MovieContent />
-        </div>
-    )
+    render ()
+    {
+        return (
+            <div>
+                < MovieContent />
+            </div>
+        )
+    }
 };
-
-export default App;
