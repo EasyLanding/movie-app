@@ -103,9 +103,13 @@ export default class MovieContent extends Component
             <div className='conteinerDiv'>
                 { errorMessage }
                 { spinner }
-                <SearchInput
-                    onSearchChange={ this.onSearchChange } />
                 <div className="movieCartConteinerHeader">
+                    <div className="movieCartButton">
+                        <button className='search-button'>Search</button>
+                        <button className='rate-button'>Reate</button>
+                    </div>
+                    <SearchInput
+                        onSearchChange={ this.onSearchChange } />
                     <h1 className='movieCartHeader'>Movie DB</h1>
                 </div>
                 {
@@ -121,8 +125,8 @@ export default class MovieContent extends Component
                                                     <img className='movieImg' alt={ itemTitle[4] } src={ `https://image.tmdb.org/t/p/original${itemTitle[2]}` } />
                                                     <div className='movieCart-cart-content'>
                                                         <h2 className='movieHeader'>{ itemTitle[0] }</h2>
-                                                        <p className='movieAverage'>{ itemTitle[3] } &#9733;</p>
                                                         <p className='movieDescription'>{ itemTitle[1] }</p>
+                                                        <p className='movieAverage'>{ itemTitle[3] } &#9733;</p>
                                                     </div>
                                                 </div>)
                                         })
