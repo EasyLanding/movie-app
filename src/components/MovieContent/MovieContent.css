@@ -1,6 +1,6 @@
 .conteinerDiv {
     background-image: url(img/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg);
-    background-size: 100% 100%;
+    background-size: 100vw 100%;
     background-position: center;
     background-repeat: no-repeat;
     height: 700px;
@@ -8,44 +8,71 @@
 
 .movieCartConteinerHeader {
     display: flex;
-    justify-content: center;
-
+    justify-content: space-around;
 }
 
 .movieCartHeader {
-    margin-right: 300px;
-    margin-top: 20px;
+    margin-top: 25px;
     color: chartreuse;
     width: 200px;
     border: 4px solid chartreuse;
+    padding-left: 30px;
+    height: 60px
 }
 
 .movieCartConteiner {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 470px;
 }
 
 .movieCart {
     display: flex;
+
 }
 
 .movieCart-cart {
     display: flex;
-    height: 100%;
-    margin-left: 80px;
+    height: 400px;
+    margin-left: 20px;
     background: rgba(0, 0, 0, 0.4);
     border-radius: 10px;
 }
 
 .movieImg {
-    width: 200px;
-    height: 300px;
-    margin-left: 40px;
-    margin-top: 40px;
+    width: 180px;
+    object-fit: cover;
+}
+
+
+.movieCart-cart-content-header {
+    display: flex;
+    justify-content: space-between;
 }
 
 .movieHeader {
+    width: 250px;
     text-align: center;
     padding: 10px;
+    color: white
+}
+
+.movieHeader-rate {
+    margin-right: 10px;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+}
+
+.movie-card-date {
+    padding: 20px;
     color: white
 }
 
@@ -55,10 +82,11 @@
     color: white
 }
 
-.movieAverage {
-    font-size: 22px;
-    color: white;
-    padding: 20px;
+.rate-movie-cart {
+    margin-left: 10px;
+    display: flex;
+    align-items: flex-end;
+    height: 50px;
 }
 
 .paginationConteiner {
@@ -71,8 +99,7 @@
     display: flex;
     justify-content: center;
     width: 150px;
-    height: 50px;
-    margin-left: 100px;
+    height: 60px;
     margin-top: 25px;
 }
 

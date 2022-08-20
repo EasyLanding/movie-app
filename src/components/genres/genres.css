@@ -1,0 +1,15 @@
+.movie-card-genre-conteiner {
+    display: flex;
+    margin-left: 20px;
+    width: 250px;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.movie-card-genre {
+    background-color: #FAFAFA;
+    border: 1px solid #D9D9D9;
+    border-radius: 3px;
+    font-size: 12px;
+    padding: 0 5px
+}
