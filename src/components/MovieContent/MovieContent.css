@@ -6,11 +6,18 @@
     height: 700px;
 }
 
+/* Контейнер для хедера муви карт */
 .movieCartConteinerHeader {
     display: flex;
     justify-content: space-around;
 }
 
+.movieCart-cart-content-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Элемент "Лого" муви дб */
 .movieCartHeader {
     margin-top: 25px;
     color: chartreuse;
@@ -20,6 +27,7 @@
     height: 60px
 }
 
+/* Контейнер */
 .movieCartConteiner {
     display: flex;
     justify-content: center;
@@ -27,11 +35,13 @@
     height: 470px;
 }
 
+/* Еще контейнер внутри movieCartConteiner */
 .movieCart {
     display: flex;
 
 }
 
+/* Див внут ри которого контент сам муви карт */
 .movieCart-cart {
     display: flex;
     height: 400px;
@@ -41,16 +51,12 @@
 }
 
 .movieImg {
-    width: 180px;
+    width: 300px;
     object-fit: cover;
 }
 
 
-.movieCart-cart-content-header {
-    display: flex;
-    justify-content: space-between;
-}
-
+/* Рейтинг в цифре в хедере */
 .movieHeader {
     width: 250px;
     text-align: center;
@@ -69,19 +75,39 @@
     width: 30px;
     height: 30px;
     font-size: 12px;
+    color: white
 }
 
+.bad {
+    border-color: #E90000;
+}
+
+.not-bad {
+    border-color: #E97E00;
+}
+
+.good {
+    border-color: #E9D100;
+}
+
+.wonderful {
+    border-color: #66E900;
+}
+
+/* Дата релиза фильма date */
 .movie-card-date {
     padding: 20px;
     color: white
 }
 
+/* Описание */
 .movieDescription {
     width: 300px;
     padding: 20px;
     color: white
 }
 
+/* стили блока рейтинга "Звездочки" внизу муви карт */
 .rate-movie-cart {
     margin-left: 10px;
     display: flex;
@@ -89,12 +115,14 @@
     height: 50px;
 }
 
+/* Пагимнация блок див */
 .paginationConteiner {
     width: 400px;
     margin: auto;
     padding-top: 20px;
 }
 
+/* Контейнер кнопок rate search*/
 .movieCartButton {
     display: flex;
     justify-content: center;
