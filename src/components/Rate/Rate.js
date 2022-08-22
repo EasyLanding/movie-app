@@ -13,6 +13,7 @@ export default class RateM extends Component
                 <Rate
                     count={ 10 }
                     allowHalf
+                    onChange={ (e) => this.props.changeRateMovies(this.props.id) }
                 ></Rate>
             </div>
         )

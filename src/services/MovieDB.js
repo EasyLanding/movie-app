@@ -9,7 +9,7 @@ export default class MovieDB extends Component
         this.searchData = searchData
         const res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=c8e44c65deebb0118bbf6902d87d51e0&language=en-US&query=${searchData}&include_adult=false`)
 
-        if (!res.ok)
+        if (res.status > 400)
         {
             throw new Error(`Could not fetch ${`https://api.themoviedb.org/3/search/movie?api_key=c8e44c65deebb0118bbf6902d87d51e0&language=en-US&query=${searchData}&include_adult=false`}` + `, received${res.status}`)
         }

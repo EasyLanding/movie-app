@@ -75,7 +75,8 @@ export default class MovieContent extends Component
             {
                 return;
             }
-            if (element.results === undefined || element.results.length === 0)
+
+            if (element === undefined || element.results.length === 0)
             {
                 this.setState({
                     movieElement: [],
@@ -89,7 +90,7 @@ export default class MovieContent extends Component
             this.setState({
                 movieElement: element.results.map(element =>
                 {
-                    console.log(element)
+
                     return [element.title, element.overview, element.poster_path, element.vote_average, element.id, element.release_date, element.genre_ids]
                 }),
                 totalPage: element.length / pageSize,
@@ -155,13 +156,12 @@ export default class MovieContent extends Component
     {
         const newArr = this.state.movieElement
 
-        const idx = newArr.findIndex((el) => el.id === id)
+        const idx = newArr.findIndex((el) => el[4] === id)
 
-        //return element.findIndex((el) => el[4] === id)
+        // localStorage.clear()
+        let newArrString = JSON.stringify(newArr[idx])
+        localStorage.setItem(1, newArrString)
         console.log(newArr[idx])
-
-        //this.setState({ movieRated: newArr[idx] })
-        console.log(this.state.movieRated)
     };
 
     render ()
@@ -169,6 +169,8 @@ export default class MovieContent extends Component
         const { movieElement, loading, error, current, minIndex, maxIndex, tabRated } = this.state
 
         //const errorMessage = error ? < ErrorIndicator /> : null;
+
+        const changeRateMovies = this.changeRateMovie
         return (
 
             < div >
@@ -242,7 +244,8 @@ export default class MovieContent extends Component
                                                                         <p className='movieDescription'>{ ShortOverview }</p>
                                                                         <div className='rate-movie-cart'>
                                                                             <RateM
-
+                                                                                id={ itemTitle[4] }
+                                                                                changeRateMovies={ changeRateMovies }
                                                                             />
                                                                         </div>
                                                                     </div>
