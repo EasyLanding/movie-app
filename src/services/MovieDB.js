@@ -1,6 +1,5 @@
 import { Component } from 'react';
 
-
 export default class MovieDB extends Component
 {
     searchData = null

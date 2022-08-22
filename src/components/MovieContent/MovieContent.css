@@ -1,10 +1,10 @@
 .conteinerDiv {
     background-image: url(img/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg);
     background-size: 80vw 50vw;
-    background-position: center;
     background-repeat: no-repeat;
     height: 49vw;
     width: 80vw;
+    opacity: 80%
 }
 
 /* Контейнер для хедера муви карт */

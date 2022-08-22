@@ -59,6 +59,11 @@ export default class MovieContent extends Component
                 loading: false,
                 searchData: element
             })
+
+            if (element.results.length === 0)
+            {
+                this.setState({ error: true })
+            }
         }).catch((err) =>
         {
             localStorage.clear()
