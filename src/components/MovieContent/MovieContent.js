@@ -161,7 +161,6 @@ export default class MovieContent extends Component
         // localStorage.clear()
         let newArrString = JSON.stringify(newArr[idx])
         localStorage.setItem(1, newArrString)
-        console.log(newArr[idx])
     };
 
     render ()

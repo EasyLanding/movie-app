@@ -13,16 +13,6 @@ export default class MovieContentCookie extends Component
         maxIndex: 0
     }
 
-    moviesCookieRated = () =>
-    {
-        let newArr = JSON.parse(localStorage.getItem(1))
-        console.log(newArr)
-    }
-
-    test ()
-    {
-        console.log(this.state.moviesRated)
-    }
     render ()
     {
         let newArr = JSON.parse(localStorage.getItem(1))
