@@ -28,6 +28,10 @@
     height: 60px
 }
 
+.movieCartHeader-1 {
+    color: chartreuse;
+}
+
 /* Контейнер */
 .movieCartConteiner {
     display: flex;
@@ -155,4 +159,32 @@
 
 .movieCartButton .rate-button:hover {
     background: rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (max-width: 1165px) {
+    .movieCartConteinerHeader {
+        display: block;
+    }
+
+    .movieCartHeader {
+        margin: auto;
+    }
+
+    .movieCartButton {
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        width: 150px;
+        height: 60px;
+    }
+
+    /* Элемент "Лого" муви дб */
+    .movieCartHeader {
+        margin-left: 10px;
+        color: chartreuse;
+        width: 200px;
+        border: 4px solid chartreuse;
+        display: flex;
+        margin: auto;
+    }
 }

@@ -147,10 +147,14 @@ export default class MovieContent extends Component
     }
     movieDate = (item) =>
     {
-        let date = new Date(item);
-        const formatDate = format(date, 'MMMM d, Y');
-        let finalDate = formatDate;
-        return finalDate
+        console.log(item)
+        if (item)
+        {
+            let date = new Date(item);
+            const formatDate = format(date, 'MMMM d, Y');
+            let finalDate = formatDate;
+            return finalDate
+        }
     }
     render ()
     {
@@ -187,7 +191,7 @@ export default class MovieContent extends Component
                                 <SearchInput
                                     searchMovie={ this.searchMovie }
                                 />
-                                <h1 className='movieCartHeader'>Movie DB</h1>
+                                <div className='movieCartHeader'><h1 className='movieCartHeader-1'>Movie DB</h1></div>
                             </div>
                             { errorMessage }
                             {

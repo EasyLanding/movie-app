@@ -1,8 +1,17 @@
 .example {
     margin: auto;
-    width: 200px;
-    height: 200px;
+    display: flex;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
     margin-bottom: 20px;
     padding: 30px 50px;
     border-radius: 4px;
+    background-color: darkgray;
+    opacity: 65%
+}
+
+.spinner-movie {
+    width: 200px;
+    height: 200px;
 }
