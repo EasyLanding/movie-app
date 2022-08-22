@@ -4,17 +4,14 @@ import MovieDb from '../../services/MovieDB';
 import './MovieContent.css'
 import ErrorIndicator from '../error-indicator/error-indicator';
 import Spinner from '../spinner/Spinner';
-
-import { Pagination } from "antd";
-import "antd/dist/antd.css";
-
 import SearchInput from '../searchInput/SearchInput';
 import RateM from '../Rate/Rate';
 import MovieContentCookie from '../MovieContentCookie/movieContentCookie';
 import Genres from '../genres/genres';
 
+import { Pagination } from "antd";
+import "antd/dist/antd.css";
 import { format } from 'date-fns';
-
 
 
 const pageSize = 1;
@@ -42,55 +39,20 @@ export default class MovieContent extends Component
         this.searchMovie()
     }
 
-    onWarn = () =>
-    {
-        setTimeout(() =>
-        {
-            if (this.state.loading)
-            {
-                this.setState({
-                    warning: true,
-                });
-                if (!this.state.notFound)
-                {
-                    this.onWarn();
-                }
-            } else if (!this.state.notFound)
-            {
-                this.setState({
-                    warning: false,
-                });
-            }
-        }, 7000);
-    }
-
     searchMovie = (searchData) =>
     {
-
+        this.setState({ loading: true })
         let movieDBSearch = new MovieDb()
-
         movieDBSearch.getResponseMovieDB(searchData).then((element) =>
         {
             if (!searchData)
             {
+                this.setState({ loading: false })
                 return;
             }
-
-            if (element === undefined || element.results.length === 0)
-            {
-                this.setState({
-                    movieElement: [],
-                    notFound: true,
-                    loading: true
-
-                })
-                return;
-            }
-
             this.setState({
                 movieElement: element.results.map(element =>
                 {
-
                     return [element.title, element.overview, element.poster_path, element.vote_average, element.id, element.release_date, element.genre_ids]
                 }),
                 totalPage: element.length / pageSize,
@@ -101,7 +63,6 @@ export default class MovieContent extends Component
                 loading: false,
                 searchData: element
             })
-
         }).catch((err) =>
         {
             localStorage.clear()
@@ -112,7 +73,6 @@ export default class MovieContent extends Component
                 error: true,
             });
         });
-        this.onWarn();
     }
 
     handleChange = (page) =>
@@ -163,13 +123,45 @@ export default class MovieContent extends Component
         localStorage.setItem(1, newArrString)
     };
 
+    shortDescriptionMovie = (item) =>
+    {
+        let maxLength = 28;
+        let ShortOverview = item.split(' ');
+        if (ShortOverview.length >= maxLength)
+        {
+            ShortOverview.length = maxLength;
+            ShortOverview.push('...');
+        }
+        ShortOverview = ShortOverview.join(' ');
+        return ShortOverview
+    }
+    movieRaitingNumber = (item) =>
+    {
+        let ratingColor
+        if (item >= 0 && item < 3) ratingColor = 'bad';
+        if (item >= 3 && item < 5) ratingColor = 'not-bad';
+        if (item >= 5 && item < 7) ratingColor = 'good';
+        if (item >= 7) ratingColor = 'wonderful'
+        return ratingColor
+    }
+    movieDate = (item) =>
+    {
+        let date = new Date(item);
+        const formatDate = format(date, 'MMMM d, Y');
+        let finalDate = formatDate;
+        return finalDate
+    }
     render ()
     {
         const { movieElement, loading, error, current, minIndex, maxIndex, tabRated } = this.state
 
-        //const errorMessage = error ? < ErrorIndicator /> : null;
+        const errorMessage = error ? < ErrorIndicator /> : null;
 
         const changeRateMovies = this.changeRateMovie
+        const shortDescriptionMovie = this.shortDescriptionMovie
+        const movieRaitingNumber = this.movieRaitingNumber
+        const movieDate = this.movieDate
+
         return (
 
             < div >
@@ -196,38 +188,15 @@ export default class MovieContent extends Component
                                 />
                                 <h1 className='movieCartHeader'>Movie DB</h1>
                             </div>
-
+                            { errorMessage }
                             {
-
-                                error ? < ErrorIndicator /> : loading ? <Spinner /> :
+                                loading ? <Spinner /> :
                                     <div className='movieCartConteiner'>
                                         {
                                             <div className="movieCart">
                                                 {
                                                     movieElement.map(function (itemTitle, index)
                                                     {
-                                                        let maxLength = 28;
-                                                        let ShortOverview = itemTitle[1].split(' ');
-
-                                                        const date = new Date(itemTitle[5]);
-                                                        const formatDate = format(date, 'MMMM d, Y');
-                                                        let finalDate = formatDate;
-
-                                                        //Логика рейтинга(цифры в хедере)
-                                                        let ratingColor
-                                                        if (itemTitle[3] >= 0 && itemTitle[3] < 3) ratingColor = 'bad';
-                                                        if (itemTitle[3] >= 3 && itemTitle[3] < 5) ratingColor = 'not-bad';
-                                                        if (itemTitle[3] >= 5 && itemTitle[3] < 7) ratingColor = 'good';
-                                                        if (itemTitle[3] >= 7) ratingColor = 'wonderful'
-
-                                                        //Сокращаем дескриптион(описание фильма)
-                                                        if (ShortOverview.length >= maxLength)
-                                                        {
-                                                            ShortOverview.length = maxLength;
-                                                            ShortOverview.push('...');
-                                                        }
-                                                        ShortOverview = ShortOverview.join(' ');
-
                                                         //логика для пагинации и отрисовка элемента movieCart render
                                                         return index >= minIndex &&
                                                             index < maxIndex && (
@@ -236,11 +205,11 @@ export default class MovieContent extends Component
                                                                     <div className='movieCart-cart-content'>
                                                                         <div className='movieCart-cart-content-header'>
                                                                             <h2 className='movieHeader'>{ itemTitle[0] }</h2>
-                                                                            <div className={ 'movieHeader-rate' + ' ' + ratingColor }>{ itemTitle[3] }</div>
+                                                                            <div className={ 'movieHeader-rate' + ' ' + movieRaitingNumber(itemTitle[3]) }>{ itemTitle[3] }</div>
                                                                         </div>
-                                                                        <div className="movie-card-date">{ finalDate }</div>
+                                                                        <div className="movie-card-date">{ movieDate(itemTitle[5]) }</div>
                                                                         <Genres genreIds={ itemTitle[6] } />
-                                                                        <p className='movieDescription'>{ ShortOverview }</p>
+                                                                        <p className='movieDescription'>{ shortDescriptionMovie(itemTitle[1]) }</p>
                                                                         <div className='rate-movie-cart'>
                                                                             <RateM
                                                                                 id={ itemTitle[4] }
