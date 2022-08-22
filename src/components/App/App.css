@@ -1,0 +1,33 @@
+.conteiner {
+    display: flex;
+}
+
+.left-img-movies {
+    width: 120px;
+    height: 120px;
+    margin-left: 10px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.right-img-movies {
+    width: 120px;
+    height: 120px;
+    margin-left: 10px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.left-img-movies-plenka {
+    height: 120px;
+    width: 110px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+}
+
+.right-img-movies-plenka {
+    height: 120px;
+    width: 110px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+}

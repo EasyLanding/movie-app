@@ -1,0 +1,6 @@
+#root {
+    display: flex;
+    justify-content: center;
+    background-color: darkgrey;
+    height: 49vw
+}

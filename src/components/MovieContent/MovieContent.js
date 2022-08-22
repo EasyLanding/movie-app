@@ -26,11 +26,8 @@ export default class MovieContent extends Component
         maxIndex: 0,
         error: false,
         loading: false,
-        warning: false,
-        notFound: false,
         searchData: null,
         rate: false,
-        movieRated: [],
         tabRated: false
     }
 
@@ -58,7 +55,6 @@ export default class MovieContent extends Component
                 totalPage: element.length / pageSize,
                 minIndex: 0,
                 maxIndex: pageSize,
-                warning: false,
                 error: false,
                 loading: false,
                 searchData: element
