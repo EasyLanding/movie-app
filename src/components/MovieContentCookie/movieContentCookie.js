@@ -19,7 +19,6 @@ export default class MovieContentCookie extends Component
         const { toggleTabSearch } = this.props
         const { minIndex, maxIndex } = this.state
 
-        console.log(newArr[1])
         let maxLength = 28;
         let ShortOverview = newArr[1].split(' ');
 

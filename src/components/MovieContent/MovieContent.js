@@ -104,6 +104,7 @@ export default class MovieContent extends Component
 
         }).catch((err) =>
         {
+            localStorage.clear()
             console.log(err);
             this.setState({
                 movieElement: [],
@@ -147,7 +148,6 @@ export default class MovieContent extends Component
 
     toggleTabSearch = () =>
     {
-
         this.setState({
             tabRated: false,
         })
