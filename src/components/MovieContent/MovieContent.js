@@ -147,7 +147,6 @@ export default class MovieContent extends Component
     }
     movieDate = (item) =>
     {
-        console.log(item)
         if (item)
         {
             let date = new Date(item);
@@ -169,7 +168,7 @@ export default class MovieContent extends Component
 
         return (
 
-            < div >
+            < div className='conteiner-1' >
                 {
                     tabRated ? <MovieContentCookie
                         toggleTabSearch={ this.toggleTabSearch

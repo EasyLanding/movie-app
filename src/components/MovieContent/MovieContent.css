@@ -1,35 +1,40 @@
+.conteiner-1 {
+    display: block;
+    height: 100%
+}
+
 .conteinerDiv {
-    background-image: url(img/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg);
-    background-size: 80vw 50vw;
-    background-repeat: no-repeat;
-    height: 49vw;
-    width: 80vw;
-    opacity: 80%
+    display: block;
+    height: 100%
 }
 
-/* Контейнер для хедера муви карт */
+/*HEADER*/
 .movieCartConteinerHeader {
-    display: flex;
-    justify-content: space-around;
-}
-
-.movieCart-cart-content-header {
+    width: 100vw;
     display: flex;
     justify-content: space-between;
 }
 
-/* Элемент "Лого" муви дб */
+.movieCartButton {
+    margin-left: 60px;
+}
+
+.movieCartHeader {
+    margin-right: 60px;
+}
+
+/* Элемент "Лого" муви дб Header */
 .movieCartHeader {
     margin-top: 25px;
-    color: chartreuse;
+    color: #00FC87;
     width: 200px;
-    border: 4px solid chartreuse;
+    border: 4px solid #00FC87;
     padding-left: 30px;
     height: 60px
 }
 
 .movieCartHeader-1 {
-    color: chartreuse;
+    color: #00FC87;
 }
 
 /* Контейнер */
@@ -43,13 +48,12 @@
 /* Еще контейнер внутри movieCartConteiner */
 .movieCart {
     display: flex;
-
+    margin-top: 100px;
 }
 
 /* Див внут ри которого контент сам муви карт */
 .movieCart-cart {
     display: flex;
-    height: 400px;
     margin-left: 20px;
     background: rgba(0, 0, 0, 0.4);
     border-radius: 10px;
@@ -60,6 +64,9 @@
     object-fit: cover;
 }
 
+.movieCart-cart-content-header {
+    display: flex;
+}
 
 /* Рейтинг в цифре в хедере */
 .movieHeader {
@@ -102,7 +109,7 @@
 /* Дата релиза фильма date */
 .movie-card-date {
     padding: 20px;
-    color: white
+    color: #00FC87
 }
 
 /* Описание */
@@ -122,9 +129,9 @@
 
 /* Пагимнация блок див */
 .paginationConteiner {
-    width: 400px;
-    margin: auto;
-    padding-top: 20px;
+    margin-top: 150px;
+    display: flex;
+    justify-content: center;
 }
 
 /* Контейнер кнопок rate search*/
@@ -139,7 +146,7 @@
 .movieCartButton .search-button {
     margin-right: 5px;
     border: none;
-    border: 4px solid chartreuse;
+    border: 4px solid #00FC87;
     background: rgba(0, 0, 0, 0);
     font-size: 20px;
     font-weight: bolder;
@@ -147,11 +154,12 @@
 
 .movieCartButton .search-button:hover {
     background: rgba(0, 0, 0, 0.2);
+    cursor: pointer;
 }
 
 .movieCartButton .rate-button {
     border: none;
-    border: 4px solid chartreuse;
+    border: 4px solid #00FC87;
     background: rgba(0, 0, 0, 0);
     font-size: 20px;
     font-weight: bolder;
@@ -159,32 +167,5 @@
 
 .movieCartButton .rate-button:hover {
     background: rgba(0, 0, 0, 0.2);
-}
-
-@media screen and (max-width: 1165px) {
-    .movieCartConteinerHeader {
-        display: block;
-    }
-
-    .movieCartHeader {
-        margin: auto;
-    }
-
-    .movieCartButton {
-        margin: auto;
-        display: flex;
-        justify-content: center;
-        width: 150px;
-        height: 60px;
-    }
-
-    /* Элемент "Лого" муви дб */
-    .movieCartHeader {
-        margin-left: 10px;
-        color: chartreuse;
-        width: 200px;
-        border: 4px solid chartreuse;
-        display: flex;
-        margin: auto;
-    }
+    cursor: pointer;
 }
