@@ -43,13 +43,19 @@ export default class MovieContentCookie extends Component
 
     render ()
     {
-        let newArr = JSON.parse(localStorage.getItem(1))
+        let cookie
+        let newArr
+        if (document.cookie.length > 0)
+        {
+            cookie = document.cookie.slice(2, document.cookie.length)
+            newArr = JSON.parse(cookie)
+        }
         const { toggleTabSearch } = this.props
 
         return (
             <div>
                 {
-                    localStorage.length > 0 ?
+                    document.cookie.length > 0 ?
                         <div className='conteinerDiv'>
                             <div className="movieCartConteinerHeader">
                                 <div className="movieCartButton">

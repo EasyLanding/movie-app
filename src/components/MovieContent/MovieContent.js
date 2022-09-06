@@ -118,10 +118,11 @@ export default class MovieContent extends Component
         const newArr = this.state.movieElement
 
         const idx = newArr.findIndex((el) => el[4] === id)
-
-        // localStorage.clear()
         let newArrString = JSON.stringify(newArr[idx])
-        localStorage.setItem(1, newArrString)
+
+        let name = "1";
+        let value = newArrString
+        document.cookie = name + "=" + value
     };
 
     shortDescriptionMovie = (item) =>
